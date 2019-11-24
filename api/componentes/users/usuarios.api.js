@@ -34,3 +34,26 @@ module.exports.listar = function(req, res){
 
     );
 };
+module.exports.validar = function(req, res) {
+    modelo_usuario.findOne({correo : req.body.correo}).then(
+        function(usuario){
+            if (usuario) {
+                if (usuario.contrasenna == req.body.contrasenna) {
+                    res.json({
+                        success: true,
+                        usuario: usuario
+                    });
+                } else {
+                    res.json({
+                        success: false
+                    }); 
+                }
+            } else {
+                res.json({
+                    success: false,
+                    msg : 'El usuario no existe'
+                }); 
+            }
+        }
+    );
+};

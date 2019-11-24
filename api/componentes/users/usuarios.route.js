@@ -18,4 +18,11 @@ router.route('/listar_usuarios')
         }
     );
 
+router.route('/validar_usuario')
+    .post(
+        function(req , res){
+            api_usuarios.validar(req, res);
+        }
+    );
+
 module.exports = router;
