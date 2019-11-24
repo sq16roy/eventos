@@ -2,19 +2,19 @@
 
 const express = require('express');
 const router = express.Router();
-const api_inmuebles = require('./inmuebles.api');
+const api_eventos = require('./eventos.api');
 
-router.route('/registrar_inmueble')
+router.route('/registrar_evento')
     .post(
         function(req , res){
-            api_inmuebles.registrar(req, res);
+            api_eventos.registrar(req, res);
         }
     );
 
-router.route('/listar_inmuebles')
+router.route('/listar_eventos')
     .get(
         function(req , res){
-            api_inmuebles.listar(req, res);
+            api_eventos.listar(req, res);
         }
     );
 
