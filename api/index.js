@@ -62,10 +62,13 @@ app.use( function(req, res, next) {
 
 
 const comentarios = require('./componentes/comentarios/comentarios.route');
-const inmuebles = require('./componentes/inmuebles/inmuebles.route');
+const eventos = require('./componentes/eventos/eventos.route');
+const usuarios = require('./componentes/users/usuarios.route');
+
 
 app.use('/api', comentarios);
-app.use('/api', inmuebles);
+app.use('/api', eventos);
+app.use('/api', usuarios);
 
 
 
