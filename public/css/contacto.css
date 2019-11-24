@@ -1,0 +1,68 @@
+
+.columna_izquierda{
+    width: 45%;
+    float: left;
+}
+.columna_izquierda h1{
+    font-size: 24px;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.columna_izquierda p{
+    text-align: center;
+    line-height: 25px;
+}
+
+.columna_derecha{
+    width: 45%;
+    float: right;
+}
+
+#frm_contacto{
+    margin-top: 20px;
+    margin-bottom: 20px; 
+}
+#frm_contacto div{
+    margin-bottom: 15px;
+}
+#frm_contacto label{
+    display: inline-block;
+    width: 110px;
+}
+#frm_contacto input{
+    display: inline-block;
+    width: 250px;
+    height: 30px;
+    outline: none;
+}
+#frm_contacto input[type=radio]{
+    display: inline-block;
+    width: 12px;
+    height: 13px;
+}
+#frm_contacto input::placeholder { 
+   font-size: 12px;
+   padding: 5px;
+}
+#frm_contacto fieldset{
+    margin-bottom: 15px;
+    padding-top: 15px;
+}
+#frm_contacto textarea{
+    width: 250px;
+    height: 100px;
+    resize: none;
+}
+#frm_contacto button{
+    display: block;
+    background:  #f1c40f;
+    padding: 10px;
+    width: 170px;
+    margin: 0 auto;
+    font-size: 16px;
+}
+#frm_contacto button:hover{
+   
+    background:  #f39c12;
+}
