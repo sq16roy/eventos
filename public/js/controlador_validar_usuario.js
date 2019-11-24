@@ -1,6 +1,5 @@
 'use strict';
 
-import { validar } from "../../api/componentes/users/usuarios.api";
 
 const input_correo = document.querySelector('#correo');
 const input_contrasenna = document.querySelector('#contrasenna');
@@ -40,4 +39,4 @@ function validar(correo, contrasenna){
     return error;
 };
 
-btn_ingresar.addEventListener('click', getDatos)
+btn_ingresar.addEventListener('click', getDatos);
