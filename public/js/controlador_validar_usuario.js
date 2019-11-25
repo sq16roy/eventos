@@ -1,6 +1,5 @@
 'use strict';
 
-import { validar } from "../../api/componentes/users/usuarios.api";
 
 const input_correo = document.querySelector('#correo');
 const input_contrasenna = document.querySelector('#contrasenna');
@@ -20,7 +19,7 @@ function getDatos() {
     }
 };
 
-function validar(correo, contrasenna){
+function validar(correo, contrasenna) {
     let error = false;
 
     if (correo == '') {
