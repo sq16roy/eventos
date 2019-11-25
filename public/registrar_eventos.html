@@ -16,15 +16,14 @@
 <body>
     <header id="header_principal">
         <nav>
-            <a href="index.html">Inicio</a>
-            <a href="listar_comentarios.html">Contacto</a> 
+            <a href="listar_eventos.html">Eventos</a> 
          </nav>
     </header>
     <main>
         <div class="columna_izquierda">
-            <h1>Inmuebles</h1>
+            <h1>Eventos</h1>
             <p>
-                En ésta sección puede realizar el registro de los inmuebles que desee registrar dentro del sistema.
+                En ésta sección puede realizar el registro de los Evento que desee registrar dentro del sistema.
             </p>
             <p>
                 Por favor llene los espacios solicitados y presione el botón de enviar.
@@ -40,18 +39,12 @@
                 <input type="number" id="txt_precio">
             </div>
             <div>
-                <label for="slt_provincias">Provincia</label>
-                <select id="slt_provincias">
-                    <option value="">--Selecciones una provincia--</option>
-                    
-                </select>
+                <label for="input_fecha">Fecha</label>
+                <input type="date" id="input_fecha">
             </div>
             <div>
-                <label for="slt_cantones">Cantón</label>
-                <select id="slt_cantones">
-                    <option value="">--Seleccione un cantón--</option>
-                   
-                </select>
+                <label for="input_hora">Hora</label>
+                <input type="time" id="input_hora">
             </div>
 
             <div>
@@ -62,9 +55,8 @@
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 
-    <script src="js/servicio_inmuebles.js"></script>
-    <script src="js/controlador_registro_inmuebles.js"></script>
-    <script src="js/controlador_ubicacion.js"></script>
+    <script src="js/servicio_eventos.js"></script>
+    <script src="js/controlador_registro_eventos.js"></script>
 </body>
 
 </html>

@@ -19,16 +19,20 @@
     <section class="main_container">
         <h1 class="iniciar">Iniciar sesion</h1>
 
-        <input class="correo_inicio" type="email" placeholder="Correo electronico">
+        <input class="correo_inicio" type="email" placeholder="Correo electronico" id="correo">
 
-        <input class="contrasena_inicio" type="text" placeholder="Contraseña">
+        <input class="contrasena_inicio" type="text" placeholder="Contraseña" id="contrasenna">
 
-        <button class="ingresar_btn">Ingresar</button>
+        <button class="ingresar_btn" id="btnIngresar">Ingresar</button>
 
         <a class="olvidaste" href="">¿olvidaste tu contraseña?</a>
         <a class="registrarse" href="registrarse.html">Registrarse</a>
 
     </section>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="js/servicio_validar_usuario.js"></script>
+    <script src="js/controlador_validar_usuario.js"></script>
 </body>
 
 </html>

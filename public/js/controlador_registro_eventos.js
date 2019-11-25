@@ -4,17 +4,17 @@ const boton_registrar = document.querySelector('#btn_registrar');
 
 const input_nombre = document.querySelector('#txt_nombre');
 const input_precio = document.querySelector('#txt_precio');
-const slt_provincia = document.querySelector('#slt_provincias');
-const slt_cantones = document.querySelector('#slt_cantones');
+const input_fecha = document.querySelector('#input_fecha');
+const input_hora = document.querySelector('#input_hora');
 
 function obtener_datos(){
 
     let nombre = input_nombre.value;
     let precio = input_precio.value;
-    let provincia = slt_provincia.selectedOptions[0].textContent;
-    let canton = slt_cantones.selectedOptions[0].textContent;
+    let fecha = input_fecha.value;
+    let hora = input_hora.value;
 
-    registrar_inmueble(nombre, precio, provincia, canton);
+    registrar_evento(nombre, precio, fecha, hora);
 };
 
 

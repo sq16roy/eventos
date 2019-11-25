@@ -14,7 +14,7 @@ function getDatos() {
     if (!errores) {
         usuarioAceptado = validar_usuario(correo, contrasenna);
         if (usuarioAceptado) {
-            location.href = 'listar_comentarios.html';
+            location.href = 'listar_eventos.html';
         }
     }
 };

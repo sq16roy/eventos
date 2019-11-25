@@ -2,7 +2,7 @@ html,button{
     font-family: 'Montserrat', sans-serif;
 }
 .error_input{
-    border: 2px solid #ED4C67;
+    border: 2px solid #ED4C67 !important;
 }
 /* Header y nav */
 #header_principal{
