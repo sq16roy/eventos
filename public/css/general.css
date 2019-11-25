@@ -155,7 +155,8 @@ color: #FFFFFF;
 }
 
 .body_registro{
-    background: #242424;
+    background-image: url("../imagenes/second_back.jpg");
+    box-shadow: inset 0 0 0 1000px rgba(36, 36, 36, 0.85);
 }
 .crear_cuenta_container{
     position: absolute;
@@ -167,4 +168,100 @@ color: #FFFFFF;
 
 .registro_lines_container{
     display: flex;
+    position: absolute;
+    left: -275px;
+    margin-top: 40px;
+}
+
+.registro_cliente_container{
+    background-image: url("../imagenes/cliente.png");
+    width: 256px;
+    height: 256px;
+    position: relative;
+    margin-right: 25px;
+}
+
+.registro_organizador_container{
+    background-image: url("../imagenes/organizador.jpg");
+    width: 256px;
+    height: 256px;
+    margin-right: 25px;
+}
+
+.registro_proveedor_container{
+    background-image: url("../imagenes/proveedor.png");
+    width: 256px;
+    height: 256px; 
+    margin-right: 25px;
+}
+
+.link_cliente{
+    position: absolute;
+    width: 229px;
+    height: 23px;
+    left: 63px;
+    top: 211px;
+    
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 43px;
+    line-height: 23px;
+    
+    color: #FFFFFF;
+}
+
+.link_organizador{
+    position: absolute;
+    width: 229px;
+    height: 23px;
+    left: 308px;
+    top: 211px;
+    
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 43px;
+    line-height: 23px;
+    
+    color: #FFFFFF;
+}
+
+.link_proveedor{
+    position: absolute;
+    width: 229px;
+    height: 23px;
+    left: 599px;
+    top: 211px;
+    
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 43px;
+    line-height: 23px;
+    
+    color: #FFFFFF;  
+}
+
+.crear_title{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 43px;
+    line-height: 23px;
+    color: #FFFFFF;
+    margin-bottom: 30px; 
+    margin-left: -90px; 
+}
+
+.volver{
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 43px;
+    line-height: 23px;
+    color: #FFFFFF;
+    position: absolute;
+    right: 40px;
+    top: 40px; 
 }
