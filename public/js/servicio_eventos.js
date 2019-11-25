@@ -16,8 +16,8 @@ function registrar_evento(nombre, precio, fecha, hora){
 
     request.done(function(res){
         swal.fire({
-            type : 'success',
-            title : 'Proceso realizado con éxito',
+            type : res.success ? 'success' : 'error',
+            title : res.success ? 'Proceso realizado con éxit' : 'Proceso no realizado',
             text : res.msg
         });
 
