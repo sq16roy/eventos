@@ -19,7 +19,7 @@ function getDatos() {
     }
 };
 
-function validar(correo, contrasenna){
+function validar(correo, contrasenna) {
     let error = false;
 
     if (correo == '') {
