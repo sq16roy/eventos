@@ -6,7 +6,7 @@ exports.register = async (req, res, next) => {
         const user = await db.User.create(req.body);
         const { id, username, email } = user;
         const token = jwt.sign({ id, username, email }, process.env.SECRETE);
-        res.status(201).json(user, token);
+        res.status(201).json({id, username, email, token});
     } catch (err) {
         if (err.code === 11000) {
             err.message = "Sorry, that email is already taken";

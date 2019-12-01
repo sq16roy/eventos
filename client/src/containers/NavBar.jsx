@@ -4,11 +4,15 @@ import { connect } from 'react-redux';
 import { logout } from '../store/actions';
 
 const NavBar = ({ auth, logout }) => (
-	<div>
+	<div className="">
 		<ul>
 			<li>
 				<Link to='/'>Inicio</Link>
 			</li>
+			{auth.isAuthenticated && (
+			<li>
+				<Link to='/eventos/nuevo'>Crear Evento</Link>
+			</li>)}
 			<li>
 				<Link to='/test'>Test page</Link>
 			</li>
