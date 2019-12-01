@@ -7,7 +7,7 @@ exports.register = async (req, res, next) => {
         const { id, username } = user;
         const token = jwt.sign({ id, username }, process.env.SECRETE);
         res.status(201).json(user, token);
-    } catch (error) {
+    } catch (err) {
         if (err.code === 11000) {
             err.message = "Sorry, that username is already taken";
         }
@@ -16,22 +16,23 @@ exports.register = async (req, res, next) => {
 }
 exports.login = async (req, res, next) => {
     try {
-        const user = await db.User.findOne({username: req.body.username});
-        const {id, username} = user;
+        const user = await db.User.findOne({ email: req.body.email });
+        const {id, username, email} = user;
         const valid = await user.comparePassword(req.body.password);
 
         if (valid) {
-            const token = jwt.sign({ id, username }, process.env.SECRETE);
+            const token = jwt.sign({ id, email, username }, process.env.SECRETE);
 
             res.json({
                 id,
                 username,
+                email,
                 token
             });
         } else {
             throw new Error();
         }
-    } catch (error) {
+    } catch (err) {
         err.message = 'Invalid username/password';
         next(err);
     }

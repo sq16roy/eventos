@@ -2,7 +2,7 @@ const router = require('express').Router();
 const handle = require('../handlers');
 const auth = require('../middlewares/auth');
 
-router.route('/eventos')
+router.route('/')
 .get(handle.showEventos)
 .post(auth, handle.createEvento)//show eventos
 

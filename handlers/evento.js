@@ -20,11 +20,12 @@ exports.usersEventos = async (req,res,next) => {
     } catch (err) {
         err.status = 400;
         next(err);
+
     }
 };
 exports.getEvento = async (req,res,next) => {
     try {
-        const { id } = req.decoded;
+        const { id } = req.params;
         const evento = await db.Evento.findById(id).populate('user', ['username', 'id']);
 
         if (!evento) {
@@ -36,6 +37,7 @@ exports.getEvento = async (req,res,next) => {
     } catch (err) {
         err.status = 400;
         next(err);
+
     }
 }
 
@@ -55,8 +57,9 @@ exports.createEvento = async (req,res,next) => {
 
         res.status(201).json({...evento._doc, user:user._id});
     } catch (err) {
-        err.status=400;
+        err.status = 400;
         next(err);
+
     }
 };
 
@@ -73,8 +76,9 @@ exports.deleteEvento = async (req,res,next) => {
         await evento.remove();
         res.status(202).json(evento);
     } catch (err) {
-        err.status= 400;
+        err.status = 400;
         next(err);
+
     }
 };
 

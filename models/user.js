@@ -13,7 +13,10 @@ const userSchema = new mongoose.Schema({
 		type: String,
         required: true,
         unique: true
-	},
+    },
+    eventos:{
+        type: Array
+    },
 	created: {
 		type: Date,
 		default: Date.now

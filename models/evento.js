@@ -16,7 +16,12 @@ const eventoSchema = new mongoose.Schema({
 	creado: {
 		type: Date,
 		default: Date.now
-    },
+	},
+	precio:{
+		type: Number,
+		default: 0,
+		required: true
+	},
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
