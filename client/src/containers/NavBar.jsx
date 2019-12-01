@@ -12,21 +12,22 @@ const NavBar = ({ auth, logout }) => (
 			<li>
 				<Link to='/test'>Test page</Link>
 			</li>
-			<li>
+			{!auth.isAuthenticated && (<li>
 				<Link to='/login'>Login</Link>
-			</li>
+			</li>)}
+			{!auth.isAuthenticated && (
 			<li>
 				<Link to='/register'>Registro</Link>
-			</li>
+			</li>)}
 			{auth.isAuthenticated && (
 				<li>
 					<a href='' onClick={logout}>
 						Logout
 					</a>
+					<p>{auth.user.username}</p>
 				</li>
 			)}
 		</ul>
-		{auth.isAuthenticated && <p>{auth.user.username}</p>}
 	</div>
 );
 

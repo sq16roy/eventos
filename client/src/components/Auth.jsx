@@ -19,23 +19,28 @@ class Auth extends Component {
         });
     }
 	handleSubmit(e) {
-        const { email, password } = this.state;
+        const { email, password, username } = this.state;
         const {authType} = this.props;
         
 		e.preventDefault();
-        this.props.authUser(authType || 'login', { email, password });
+        this.props.authUser(authType || 'login', { email, password, username });
     }
 
 	render() {
-		const { email, password } = this.state;
+		const { email, password, username } = this.state;
+		const {authType} = this.props;
 		return (
 			<Fragment>
 				<form onSubmit={this.handleSubmit}>
+					{authType !== 'login' && <Fragment>
+						<label htmlFor='username'>Nombre</label>
+						<input autoComplete="off" type='text' value={username} name='username' onChange={this.handleChange} />
+					</Fragment>}
 					<label htmlFor='email'>Correo</label>
 					<input autoComplete="off" type='text' value={email} name='email' onChange={this.handleChange} />
 					<label htmlFor='password'>Contraseña</label>
 					<input autoComplete="off" type='password' value={password} name='password' onChange={this.handleChange} />
-					<button type='submit'>Ingresar</button>
+					<button type='submit'>{authType == 'login' ? 'Ingresar' : 'Registrar'}</button>
 				</form>
 			</Fragment>
 		);

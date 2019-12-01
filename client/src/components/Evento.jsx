@@ -6,9 +6,9 @@ const Evento = ({evento}) => {
         <div>
             <h3>{evento.nombre}</h3>
             <div>
-                <p>{evento.hora}</p>
-                <p>{evento.fecha}</p>
-                <p>{evento.precio}</p>
+                <p><strong>Hora:</strong> {evento.hora}</p>
+                <p><strong>Fecha:</strong> {evento.fecha}</p>
+                <p><strong>Precio:</strong> {evento.precio}</p>
             </div>
         </div>
     );
