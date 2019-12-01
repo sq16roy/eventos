@@ -13,38 +13,30 @@
 
 </head>
 
-<body>
+<body class="body_registrar">
     <header id="header_principal">
         <nav>
-            <a href="listar_eventos.html">Eventos</a> 
-         </nav>
+            <a href="listar_eventos.html">Eventos</a>
+        </nav>
     </header>
-    <main>
-        <div class="columna_izquierda">
-            <h1>Eventos</h1>
-            <p>
-                En ésta sección puede realizar el registro de los Evento que desee registrar dentro del sistema.
-            </p>
-            <p>
-                Por favor llene los espacios solicitados y presione el botón de enviar.
-            </p>
-        </div>
+    <main class="main_form_registrar">
+
         <form class="columna_derecha" id="frm_contacto">
             <div>
                 <label for="txt_nombre">Nombre</label>
-                <input type="text" id="txt_nombre">
+                <input class="impt_registrar" type="text" id="txt_nombre">
             </div>
             <div>
                 <label for="txt_precio">Precio</label>
-                <input type="number" id="txt_precio">
+                <input class="impt_registrar" type="number" id="txt_precio">
             </div>
             <div>
                 <label for="input_fecha">Fecha</label>
-                <input type="date" id="input_fecha">
+                <input class="impt_registrar" type="date" id="input_fecha">
             </div>
             <div>
                 <label for="input_hora">Hora</label>
-                <input type="time" id="input_hora">
+                <input class="impt_registrar" type="time" id="input_hora">
             </div>
 
             <div>
@@ -52,7 +44,8 @@
             </div>
         </form>
     </main>
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
 
     <script src="js/servicio_eventos.js"></script>
