@@ -1,0 +1,4 @@
+//re nombrar esta variable a .env ante de correr la app
+
+PORT = 4000
+SECRETE='thisISAtemprarySecrete'
