@@ -13,8 +13,8 @@ mongoose
 const db = require('./models');
 
 const users = [
-	{ username: 'username', password: 'password' },
-	{ username: 'kelvin', password: 'password' }
+	{ username: 'username', password: 'password', email: 'test@gmail.com' },
+	{ username: 'kelvin', password: 'password', email: 'test2@gmail.com' },
 ];
 
 const seed = async () => {
