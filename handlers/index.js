@@ -1,5 +1,6 @@
 module.exports = {
-    ...require('./auth')
+	...require('./auth'),
+	...require('./evento')
 };
 
 module.exports.notFound = (req, res, next) => {

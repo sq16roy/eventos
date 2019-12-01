@@ -12,3 +12,4 @@ mongoose.connect(
 .catch(err => console.log(err));
 
 module.exports.User = require('./user');
+module.exports.Evento = require('./evento');

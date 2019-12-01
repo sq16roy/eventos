@@ -15,6 +15,7 @@ app.use(cors());
 app.use(bodyPArser.json());
 
 app.use('/api/auth', routes.auth);
+app.use('/api/eventos', routes.evento);
 
 app.use(handlers.notFound);
 app.use(handlers.errors);

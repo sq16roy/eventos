@@ -4,7 +4,9 @@ const db = require('../models');
 exports.register = async (req, res, next) => {
     try {
         const user = await db.User.create(req.body);
-        res.status(201).json(user);
+        const { id, username } = user;
+        const token = jwt.sign({ id, username }, process.env.SECRETE);
+        res.status(201).json(user, token);
     } catch (error) {
         if (err.code === 11000) {
             err.message = "Sorry, that username is already taken";
@@ -19,9 +21,12 @@ exports.login = async (req, res, next) => {
         const valid = await user.comparePassword(req.body.password);
 
         if (valid) {
+            const token = jwt.sign({ id, username }, process.env.SECRETE);
+
             res.json({
                 id,
-                username
+                username,
+                token
             });
         } else {
             throw new Error();
