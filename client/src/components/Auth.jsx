@@ -7,7 +7,8 @@ class Auth extends Component {
 		super(props);
 		this.state = {
 			email: '',
-			password: ''
+			password: '',
+			tipo:'cliente'
 		};
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.handleChange = this.handleChange.bind(this);
@@ -19,32 +20,42 @@ class Auth extends Component {
 		});
 	}
 	handleSubmit(e) {
-		const { email, password, username } = this.state;
+		const { email, password, username, tipo } = this.state;
 		const { authType } = this.props;
 
 		e.preventDefault();
-		this.props.authUser(authType || 'login', { email, password, username });
+		this.props.authUser(authType || 'login', { email, password, username, tipo });
 	}
 
 	render() {
-		const { email, password, username } = this.state;
+		const { email, password, username, tipo } = this.state;
 		const { authType } = this.props;
+		const options = ['Cliente', 'Orga'];
+
 		return (
 			<Fragment>
 				<form className="login_form" onSubmit={this.handleSubmit}>
 					{authType !== 'login' && <Fragment>
 						<label htmlFor='username'>Nombre</label>
-						<input autoComplete="off" type='text' value={username} name='username' onChange={this.handleChange} />
+						<input required autoComplete="off" type='text' value={username} name='username' onChange={this.handleChange} />
 					</Fragment>}
 					<div>
 						<label htmlFor='email'>Correo</label>
-						<input autoComplete="off" type='text' value={email} name='email' onChange={this.handleChange} />
+						<input required autoComplete="off" type='email' value={email} name='email' onChange={this.handleChange} />
 					</div>
 
 					<div>
 						<label htmlFor='password'>Contraseña</label>
-						<input autoComplete="off" type='password' value={password} name='password' onChange={this.handleChange} />
+						<input required autoComplete="off" type='password' value={password} name='password' onChange={this.handleChange} />
 					</div>
+					{authType !== 'login' && <Fragment>
+					<div>
+						<label htmlFor="tipo"></label>
+						<select name="tipo" id="" onChange={this.handleChange} value={tipo}>
+							{options.map((op, i) => <option key={i} value={op.toLocaleLowerCase()}>{op}</option>)}
+						</select>
+					</div>
+					</Fragment>}
 					<button className="login_btn" type='submit'>{authType == 'login' ? 'Ingresar' : 'Registrar'}</button>
 				</form>
 			</Fragment>

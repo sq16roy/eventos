@@ -19,7 +19,11 @@ const userSchema = new mongoose.Schema({
 	created: {
 		type: Date,
 		default: Date.now
-	}
+    },
+    tipo:{
+		type: String,
+		default: 'cliente',
+	},
 });
 
 userSchema.pre('save', async function(next) {

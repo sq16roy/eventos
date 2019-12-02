@@ -1,16 +1,112 @@
-import React from 'react';
+import React, {Component, Fragment} from 'react';
 import { connect } from 'react-redux';
+import {deleteEvento} from '../store/actions';
 
-const Evento = ({ evento }) => {
-    return (
-        <div>
-            <h3 className="evento_title">{evento.nombre}</h3>
-            <div className="evento_information">
-                <p><strong>Hora:</strong> {evento.hora}</p>
-                <p><strong>Fecha:</strong> {evento.fecha}</p>
-                <p><strong>Precio:</strong> {evento.precio}</p>
+class Evento extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            precio: '',
+            nombre: '',
+            hora: '',
+            fecha: '',
+            showEditView: false,
+            cancelMsg:''
+        };
+        this.handleChange = this.handleChange.bind(this);
+        this.toggleView = this.toggleView.bind(this);
+        this.renderEditeView = this.renderEditeView.bind(this);
+    }
+
+    handleChange(e) {
+        this.setState({
+            [e.target.name]: e.target.value
+        });
+    }
+
+    handleSubmit() {
+        console.log('test');
+    }
+
+    toggleView(){
+        const { evento } = this.props;
+
+        this.setState({
+            precio: evento.precio,
+            nombre: evento.nombre,
+            hora: new Date(evento.hora),
+            fecha: '20/10/2019',
+            showEditView: this.state.showEditView ? false : true
+        });
+    }
+
+    renderNormalView(evento, tipo, toggleView, state, handleChange, deleteEvento, isAuthenticated) {
+        return (
+            <div>
+                <h3 className="evento_title">{evento.nombre}</h3>
+                <div className="evento_information">
+                    <p><strong>Hora:</strong> {evento.hora}</p>
+                    <p><strong>Fecha:</strong> {evento.fecha}</p>
+                    <p><strong>Precio:</strong> {evento.precio}</p>
+                    {
+                        (tipo == 'orga') &&
+                        <div>
+                            {Object.keys(evento).length > 0 && <button disabled={!state.cancelMsg} onClick={() => {deleteEvento(evento._id)}}>Cancelar</button>}
+                            {Object.keys(evento).length > 0 && <button onClick={toggleView}>Editar</button>}
+                        </div> 
+                    }
+                </div>
+                {(isAuthenticated && tipo === 'orga' && Object.keys(evento).length > 0) && <textarea onChange={handleChange} name="cancelMsg" id=""  placeholder="por que sera cancelado?" value={state.cancelMsg}></textarea>}
             </div>
-        </div>
-    );
-};
-export default connect(store => ({ evento: store.currentEvento }))(Evento);
+        );
+    }
+
+    renderEditeView() {
+        const {
+            precio,
+            nombre,
+            hora,
+            fecha,
+        } = this.state;
+
+        return(
+            <div>
+                <form className="crete_event_form" onSubmit={this.handleSubmit}>
+                    <div>
+                        <label htmlFor="nombre">Nombre</label>
+                        <input value={nombre} onChange={this.handleChange} type="text" name="nombre" required/>
+                    </div>
+                    <div>
+                        <label htmlFor="fecha">Fecha</label>
+                        <input value={fecha} onChange={this.handleChange} type="date" name="fecha" required/>
+                    </div>
+                    <div>
+                        <label htmlFor="hora">Hora</label>
+                        <input value={hora} onChange={this.handleChange} type="time" name="hora" required/>
+                    </div>
+                    <div>
+                        <label htmlFor="precio">Precio</label>
+                        <input value={precio} onChange={this.handleChange} type="number" min="1" name="precio" required/>
+                    </div>
+                    <button className="submit_btn" type="submit">Update</button>
+                </form>
+            </div>
+        );
+    }
+
+    render() {
+        const {
+            showEditView
+        } = this.state;
+        const { evento, tipo, deleteEvento, isAuthenticated } = this.props
+
+        return(
+            <div>
+                {showEditView && this.renderEditeView()}
+                {!showEditView && this.renderNormalView(evento, tipo, this.toggleView, this.state, this.handleChange, deleteEvento, isAuthenticated)}
+            </div>
+        );
+    }
+}
+
+export default connect(store => ({ evento: store.currentEvento, tipo: store.auth.user.tipo, isAuthenticated: store.auth.isAuthenticated }), {deleteEvento})(Evento);

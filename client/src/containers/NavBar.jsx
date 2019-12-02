@@ -1,33 +1,30 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { logout } from '../store/actions';
+import { logout, removeError } from '../store/actions';
 
-const NavBar = ({ auth, logout }) => (
+const NavBar = ({ auth, logout, removeError }) => (
 	<div >
 		<ul className="test">
 			<li>
 				<Link to='/'>Inicio</Link>
 			</li>
-			{auth.isAuthenticated && (
-				<li>
-					<Link to='/eventos/nuevo'>Crear Evento</Link>
-				</li>)}
+			{(auth.isAuthenticated && !validarUser(auth.user.tipo)) && (
 			<li>
-				<Link to='/test'>Test page</Link>
-			</li>
+				<Link to='/eventos/nuevo'>Crear evento</Link>
+			</li>)}
 			{!auth.isAuthenticated && (<li>
-				<Link to='/login'>Login</Link>
+				<Link to='/login' onClick={removeError}>Ingresar</Link>
 			</li>)}
 			{!auth.isAuthenticated && (
-				<li>
-					<Link to='/register'>Registro</Link>
-				</li>)}
+			<li>
+				<Link to='/register' onClick={removeError}>Registro</Link>
+			</li>)}
 			{auth.isAuthenticated && (
 				<li className="logout_container">
 					<p className="new_name">{auth.user.username}</p>
 					<a href='' onClick={logout}>
-						Logout
+						Salir
 					</a>
 				</li>
 			)}
@@ -35,4 +32,8 @@ const NavBar = ({ auth, logout }) => (
 	</div>
 );
 
-export default connect(store => ({ auth: store.auth }), { logout })(NavBar);
+const validarUser = (tipo) => {
+	return (tipo === 'cliente' || tipo === 'admin'); 
+};
+
+export default connect(store => ({auth: store.auth}),{logout,removeError})(NavBar);

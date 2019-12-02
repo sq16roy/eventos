@@ -43,7 +43,7 @@ export const createEvento = (data) => {
 			dispatch(removeError());
 		} catch (err) {
 			const error = err.response.data;
-			dispatch(addError(error.message));
+            dispatch(addError(error.err));
 		}
 	};
 };
@@ -56,6 +56,18 @@ export const getCurrentEvento = (id) => {
 		} catch (err) {
 			const error = err.response.data;
 			dispatch(addError(error.message));
+		}
+	};
+};
+export const deleteEvento = (id) => {
+	return async (dispatch) => {
+		try {
+			const evento = await api.call('delete', `eventos/${id}`, {id});
+			dispatch(setCurrentEvento({}));
+			dispatch(removeError());
+		} catch (err) {
+			const error = err.response.data;
+            dispatch(addError(error.err));
 		}
 	};
 };

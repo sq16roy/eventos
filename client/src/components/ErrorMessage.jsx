@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 const ErrorMessage = ({ error }) => (
     console.log(error),
     <div className="error_mesage">
-        {error && <div>{error.message}</div>}
+        {error.message && <div>{error.message}</div>}
     </div>
 );
 
