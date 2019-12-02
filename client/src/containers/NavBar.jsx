@@ -4,15 +4,15 @@ import { connect } from 'react-redux';
 import { logout } from '../store/actions';
 
 const NavBar = ({ auth, logout }) => (
-	<div className="">
-		<ul>
+	<div >
+		<ul className="test">
 			<li>
 				<Link to='/'>Inicio</Link>
 			</li>
 			{auth.isAuthenticated && (
-			<li>
-				<Link to='/eventos/nuevo'>Crear Evento</Link>
-			</li>)}
+				<li>
+					<Link to='/eventos/nuevo'>Crear Evento</Link>
+				</li>)}
 			<li>
 				<Link to='/test'>Test page</Link>
 			</li>
@@ -20,19 +20,19 @@ const NavBar = ({ auth, logout }) => (
 				<Link to='/login'>Login</Link>
 			</li>)}
 			{!auth.isAuthenticated && (
-			<li>
-				<Link to='/register'>Registro</Link>
-			</li>)}
-			{auth.isAuthenticated && (
 				<li>
+					<Link to='/register'>Registro</Link>
+				</li>)}
+			{auth.isAuthenticated && (
+				<li className="logout_container">
+					<p className="new_name">{auth.user.username}</p>
 					<a href='' onClick={logout}>
 						Logout
 					</a>
-					<p>{auth.user.username}</p>
 				</li>
 			)}
 		</ul>
 	</div>
 );
 
-export default connect(store => ({auth: store.auth}),{logout})(NavBar);
+export default connect(store => ({ auth: store.auth }), { logout })(NavBar);
