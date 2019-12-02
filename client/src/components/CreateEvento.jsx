@@ -11,7 +11,7 @@ class CreateEvento extends Component {
             hora:'',
             fecha: ''
         };
-        this.handleChange = this.handleSubmit.bind(this);
+        this.handleChange = this.handleChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);       
     }
 
@@ -35,20 +35,33 @@ class CreateEvento extends Component {
             hora,
             fecha
         });
+        this.setState({
+            precio:'',
+            nombre:'',
+            hora:'',
+            fecha: ''
+        });
     }
     
     render(){
+        const {
+            precio,
+            nombre,
+            hora,
+            fecha
+        } = this.state;
+
         return(
             <div>
                 <form onSubmit={this.handleSubmit}>
                     <label htmlFor="nombre">Nombre</label>
-                    <input value={this.state.nombre} onChange={this.handleChange} type="text" name="nombre"/>
+                    <input value={nombre} onChange={this.handleChange} type="text" name="nombre"/>
                     <label htmlFor="fecha">Fecha</label>
-                    <input value={this.state.fecha} onChange={this.handleChange} type="date" name="fecha" />
+                    <input value={fecha} onChange={this.handleChange} type="date" name="fecha" />
                     <label htmlFor="hora">Hora</label>
-                    <input value={this.state.hora} onChange={this.handleChange} type="time" name="hora"/>
+                    <input value={hora} onChange={this.handleChange} type="time" name="hora"/>
                     <label htmlFor="precio">Precio</label>
-                    <input value={this.state.precio} onChange={this.handleChange} type="number" min="1" name="precio"/>
+                    <input value={precio} onChange={this.handleChange} type="number" min="1" name="precio"/>
                     <button type="submit">Registrar</button>
                 </form>
             </div>

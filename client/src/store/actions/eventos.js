@@ -43,7 +43,7 @@ export const createEvento = (data) => {
 			dispatch(removeError());
 		} catch (err) {
 			const error = err.response.data;
-			dispatch(addError(error.message));
+            dispatch(addError(error.err));
 		}
 	};
 };

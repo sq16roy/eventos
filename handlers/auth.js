@@ -33,7 +33,7 @@ exports.login = async (req, res, next) => {
             throw new Error();
         }
     } catch (err) {
-        err.message = 'Invalid username/password';
+        err.message = 'correo/contraseña invalida';
         next(err);
     }
 };

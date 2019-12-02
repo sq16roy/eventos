@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { logout } from '../store/actions';
+import { logout, removeError } from '../store/actions';
 
-const NavBar = ({ auth, logout }) => (
+const NavBar = ({ auth, logout, removeError }) => (
 	<div className="">
 		<ul>
 			<li>
@@ -11,22 +11,19 @@ const NavBar = ({ auth, logout }) => (
 			</li>
 			{auth.isAuthenticated && (
 			<li>
-				<Link to='/eventos/nuevo'>Crear Evento</Link>
+				<Link to='/eventos/nuevo'>Crear evento</Link>
 			</li>)}
-			<li>
-				<Link to='/test'>Test page</Link>
-			</li>
 			{!auth.isAuthenticated && (<li>
-				<Link to='/login'>Login</Link>
+				<Link to='/login' onClick={removeError}>Ingresar</Link>
 			</li>)}
 			{!auth.isAuthenticated && (
 			<li>
-				<Link to='/register'>Registro</Link>
+				<Link to='/register' onClick={removeError}>Registro</Link>
 			</li>)}
 			{auth.isAuthenticated && (
 				<li>
 					<a href='' onClick={logout}>
-						Logout
+						Salir
 					</a>
 					<p>{auth.user.username}</p>
 				</li>
@@ -35,4 +32,4 @@ const NavBar = ({ auth, logout }) => (
 	</div>
 );
 
-export default connect(store => ({auth: store.auth}),{logout})(NavBar);
+export default connect(store => ({auth: store.auth}),{logout,removeError})(NavBar);
