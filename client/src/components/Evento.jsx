@@ -1,6 +1,6 @@
-import React, {Component, Fragment} from 'react';
+import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
-import {deleteEvento} from '../store/actions';
+import { deleteEvento } from '../store/actions';
 
 class Evento extends Component {
     constructor(props) {
@@ -11,7 +11,7 @@ class Evento extends Component {
             hora: '',
             fecha: '',
             showEditView: false,
-            cancelMsg:''
+            cancelMsg: ''
         };
         this.handleChange = this.handleChange.bind(this);
         this.toggleView = this.toggleView.bind(this);
@@ -28,7 +28,7 @@ class Evento extends Component {
         console.log('test');
     }
 
-    toggleView(){
+    toggleView() {
         const { evento } = this.props;
 
         this.setState({
@@ -42,7 +42,7 @@ class Evento extends Component {
 
     renderNormalView(evento, tipo, toggleView, state, handleChange, deleteEvento, isAuthenticated) {
         return (
-            <div>
+            <div className="evento_information_container">
                 <h3 className="evento_title">{evento.nombre}</h3>
                 <div className="evento_information">
                     <p><strong>Hora:</strong> {evento.hora}</p>
@@ -51,12 +51,12 @@ class Evento extends Component {
                     {
                         (tipo == 'orga') &&
                         <div>
-                            {Object.keys(evento).length > 0 && <button disabled={!state.cancelMsg} onClick={() => {deleteEvento(evento._id)}}>Cancelar</button>}
-                            {Object.keys(evento).length > 0 && <button onClick={toggleView}>Editar</button>}
-                        </div> 
+                            {Object.keys(evento).length > 0 && <button className="cancel_btn" disabled={!state.cancelMsg} onClick={() => { deleteEvento(evento._id) }}>Cancelar</button>}
+                            {Object.keys(evento).length > 0 && <button className="edit_btn" onClick={toggleView}>Editar</button>}
+                        </div>
                     }
                 </div>
-                {(isAuthenticated && tipo === 'orga' && Object.keys(evento).length > 0) && <textarea onChange={handleChange} name="cancelMsg" id=""  placeholder="por que sera cancelado?" value={state.cancelMsg}></textarea>}
+                {(isAuthenticated && tipo === 'orga' && Object.keys(evento).length > 0) && <textarea className="textarea_cancel" onChange={handleChange} name="cancelMsg" id="" placeholder="Motivo de cancelación" value={state.cancelMsg}></textarea>}
             </div>
         );
     }
@@ -69,24 +69,24 @@ class Evento extends Component {
             fecha,
         } = this.state;
 
-        return(
+        return (
             <div>
                 <form className="crete_event_form" onSubmit={this.handleSubmit}>
                     <div>
                         <label htmlFor="nombre">Nombre</label>
-                        <input value={nombre} onChange={this.handleChange} type="text" name="nombre" required/>
+                        <input value={nombre} onChange={this.handleChange} type="text" name="nombre" required />
                     </div>
                     <div>
                         <label htmlFor="fecha">Fecha</label>
-                        <input value={fecha} onChange={this.handleChange} type="date" name="fecha" required/>
+                        <input value={fecha} onChange={this.handleChange} type="date" name="fecha" required />
                     </div>
                     <div>
                         <label htmlFor="hora">Hora</label>
-                        <input value={hora} onChange={this.handleChange} type="time" name="hora" required/>
+                        <input value={hora} onChange={this.handleChange} type="time" name="hora" required />
                     </div>
                     <div>
                         <label htmlFor="precio">Precio</label>
-                        <input value={precio} onChange={this.handleChange} type="number" min="1" name="precio" required/>
+                        <input value={precio} onChange={this.handleChange} type="number" min="1" name="precio" required />
                     </div>
                     <button className="submit_btn" type="submit">Update</button>
                 </form>
@@ -100,7 +100,7 @@ class Evento extends Component {
         } = this.state;
         const { evento, tipo, deleteEvento, isAuthenticated } = this.props
 
-        return(
+        return (
             <div>
                 {showEditView && this.renderEditeView()}
                 {!showEditView && this.renderNormalView(evento, tipo, this.toggleView, this.state, this.handleChange, deleteEvento, isAuthenticated)}
@@ -109,4 +109,4 @@ class Evento extends Component {
     }
 }
 
-export default connect(store => ({ evento: store.currentEvento, tipo: store.auth.user.tipo, isAuthenticated: store.auth.isAuthenticated }), {deleteEvento})(Evento);
+export default connect(store => ({ evento: store.currentEvento, tipo: store.auth.user.tipo, isAuthenticated: store.auth.isAuthenticated }), { deleteEvento })(Evento);

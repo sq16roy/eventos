@@ -30,7 +30,7 @@ class Eventos extends Component {
                 <td>{evento.fecha}</td>
                 <td>{evento.hora}</td>
                 <td>{evento.precio}</td>
-                <td onClick={() => this.handleSelected(evento._id)}>Ver</td>
+                <td className="ver_btn" onClick={() => this.handleSelected(evento._id)}>Ver</td>
             </tr>
         ));
 
@@ -38,13 +38,13 @@ class Eventos extends Component {
             <Fragment>
                 <table className="eventos_name">
                     <thead>
-                       <tr> 
-                        <th>Nombre</th>
-                        <th>Fecha</th>
-                        <th>Hora</th>
-                        <th>Precio</th>
-                        <th></th>
-                    </tr>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Fecha</th>
+                            <th>Hora</th>
+                            <th>Precio</th>
+                            <th></th>
+                        </tr>
                     </thead>
                     <tbody>
                         {eventos}

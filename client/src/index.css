@@ -12,6 +12,12 @@ code {
     monospace;
 }
 
+.logo{
+  background-image: url("../src/img/Logo.png");
+  width: 232px;
+  height: 94px;
+}
+
 html{
   background-image: url("../src/img/main_back.jpg"); 
 	background-attachment: fixed;
@@ -27,6 +33,8 @@ body{
   margin-right: 30px;
   list-style: none;
   cursor: pointer;
+  padding-top: 30px;
+  margin-bottom: 30px;
 }
 
 .test{
@@ -93,7 +101,7 @@ color: #FFFFFF;
   font-weight: bold;
   font-size: 30px;
   line-height: 35px;
-  color: #FFFFFF;
+  color: #FFD43D;
   margin-left: 15px;
 }
 
@@ -107,15 +115,16 @@ color: #FFFFFF;
   margin-left: 35px;
 }
 
+
 .crete_event_form input, .login_form input{
   
-width: 423px;
-height: 53px;
-text-align: center;
-
-border: 1px solid #FFFFFF;
-box-sizing: border-box;
-border-radius: 15px;
+  border: 1px solid #FFFFFF;
+  border-radius: 10px;
+  height: 30px;
+  width: 30%;
+  background: transparent;
+  color: #FFFFFF;
+  font-size: 12px;
 }
 
 .crete_event_form label, .login_form label{
@@ -124,16 +133,39 @@ margin-bottom: 20px;
 font-family: Roboto;
   font-style: normal;
   font-weight: bold;
-  font-size: 30px;
+  font-size: 20px;
   line-height: 35px;
   color: #FFFFFF;
   margin-left: 15px;
   margin-top: 10px;
 }
 
+.main_title{
+  display: block;
+margin-bottom: 20px;
+font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 30px;
+  line-height: 35px;
+  color: #FFD43D;
+  margin-left: 15px;
+  margin-top: 10px;
+  margin-left: 684px;
+    margin-bottom: 40px;
+    margin-top: 150px;
+}
+
+
 .crete_event_form, .login_form{
   text-align: center;
 }
+
+.crete_event_form{
+  background-color: #439de536;
+  padding: 20px;
+}
+
 
 .submit_btn, .login_btn{
   width: 204px;
@@ -161,7 +193,115 @@ margin-top: 20px;
 .eventos_name {
   color: white;
   width: 100%;
+  background-color: #439de536;
+    padding: 10px 10px 10px 10px;
+    
+
 }
 .eventos_name tr td {
   text-align: center;
+}
+
+.eventos_name th{
+  font-size: 20px;
+  color: #FFD43D;
+}
+
+
+.evento_information_container{
+  background-color: #439de536;
+  padding: 10px 10px 10px 10px;
+}
+
+.cancel_btn, .edit_btn{
+  width: 112px;
+height: 54px;
+background: #FFD43D;
+border-radius: 15px;
+color: black;
+margin-top: 20px;
+margin-right: 20px;
+margin-bottom: 20px;
+}
+
+.textarea_cancel{
+  margin-left: 15px;
+    margin-bottom: 10px;
+    border-radius: 15px;
+    width: 270px;
+    height: 78px;
+}
+
+::placeholder{
+  padding-left: 55px;
+  padding-top: 30px;
+  color: black;
+}
+
+.ver_btn{
+  cursor: pointer;
+  color: #FFD43D;
+  font-size: 20px;
+}
+
+.tipo_slt{
+  border-radius: 15px;
+  width: 181px;
+  height: 50px;
+  color: black;
+  background-color: transparent;
+  font-size: 20px;
+  color: white;
+}
+
+#rGenero{
+  display: block;
+    margin-bottom: 20px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 35px;
+    width: 100%; 
+    color: #FFFFFF;
+    margin-left: 15px;
+    margin-top: 10px;
+}
+
+.inputBox1{
+  display: flex;
+  align-items: center;
+}
+
+.no_especificar{
+  border: 1px solid #FFFFFF;
+  border-radius: 10px;
+  height: 100px;
+  width: 15%;
+  background: transparent;
+  color: #FFFFFF;
+  font-size: 12px;
+  margin-left: 30px;
+}
+
+.no_especificar1{
+  border: 1px solid #FFFFFF;
+  border-radius: 10px;
+  height: 100px;
+  width: 15%;
+  background: transparent;
+  color: #FFFFFF;
+  font-size: 12px;
+  margin-left: 395px;
+}
+
+.no_especificar2{
+  border: 1px solid #FFFFFF;
+  border-radius: 10px;
+  height: 100px;
+  width: 15%;
+  background: transparent;
+  color: #FFFFFF;
+  font-size: 12px;
+  margin-left: 255px;
 }
