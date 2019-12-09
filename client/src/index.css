@@ -301,3 +301,11 @@ margin-bottom: 20px;
   font-size: 12px;
   margin-left: 255px;
 }
+button:disabled {
+  background-color: gray !important;
+  cursor: not-allowed;
+  color: white;
+}
+button{
+  cursor: pointer;
+}
