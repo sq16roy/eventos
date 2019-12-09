@@ -67,6 +67,11 @@ class Evento extends Component {
             nombre,
             hora,
             fecha,
+            tipoEvento,
+            cantidadAsistentes,
+            pais,
+            recinto,
+            descripcion
         } = this.state;
 
         return (
@@ -75,6 +80,27 @@ class Evento extends Component {
                     <div>
                         <label htmlFor="nombre">Nombre</label>
                         <input value={nombre} onChange={this.handleChange} type="text" name="nombre" required />
+                    </div>
+                    <div>
+                        <label htmlFor="tipoEvento">Tipo de evento</label>
+                        <input value={tipoEvento} onChange={this.handleChange} type="text" name="tipoEvento" required />
+                    </div>
+                    <div>
+                        <label htmlFor="cantidadAsistentes">Cantidad de asistentes</label>
+                        <input value={cantidadAsistentes} onChange={this.handleChange} type="number" name="cantidadAsistentes" required />
+                    </div>
+                    <div>
+                        <label htmlFor="pais">País</label>
+                        <input value={pais} onChange={this.handleChange} type="text" name="pais" required />
+                    </div>
+
+                    <div className="slt_container">
+                        <label htmlFor="sltRecinto">Recinto</label>
+                        <select className="recinto_slt" id="recinto" value={recinto} name='recinto' onChange={this.handleChange}>
+                            <option value="">Recinto</option>
+                            <option value="San Jose">Estadio Nacional</option>
+
+                        </select>
                     </div>
                     <div>
                         <label htmlFor="fecha">Fecha</label>
@@ -87,6 +113,13 @@ class Evento extends Component {
                     <div>
                         <label htmlFor="precio">Precio</label>
                         <input value={precio} onChange={this.handleChange} type="number" min="1" name="precio" required />
+                    </div>
+
+                    <div>
+                        <label htmlFor="descripcion">Descripción</label>
+
+                        <textarea name="descripcion" id="descripcion_evento" cols="30" rows="10" value={descripcion} onChange={this.handleChange}></textarea>
+
                     </div>
                     <button className="submit_btn" type="submit">Update</button>
                 </form>

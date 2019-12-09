@@ -111,8 +111,18 @@ color: #FFFFFF;
   font-weight: bold;
   font-size: 20px;
   line-height: 25px;
-  color: #FFFFFF;
+  color: black;
   margin-left: 35px;
+}
+
+
+.evento_information p{
+  background-color: #F4F4F4;
+    width: 30%;
+    height: 30px;
+    border-radius: 10px;
+    padding-left: 15px;
+    margin-right: 15px;
 }
 
 
@@ -209,7 +219,7 @@ margin-top: 20px;
 
 
 .evento_information_container{
-  background-color: #439de536;
+  background-color: white;
   padding: 10px 10px 10px 10px;
 }
 
@@ -244,7 +254,7 @@ margin-bottom: 20px;
   font-size: 20px;
 }
 
-.tipo_slt{
+.tipo_slt, .recinto_slt{
   border-radius: 15px;
   width: 181px;
   height: 50px;
@@ -252,6 +262,12 @@ margin-bottom: 20px;
   background-color: transparent;
   font-size: 20px;
   color: white;
+}
+
+.recinto_slt option, .tipo_slt option{
+  background-color: transparent;
+  font-size: 20px;
+  color: black;
 }
 
 #rGenero{
