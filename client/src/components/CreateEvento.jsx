@@ -39,7 +39,7 @@ class CreateEvento extends Component {
         if (e.target.name == 'recinto') {
             let tempValue = JSON.parse(e.target.value);
             this.setState({
-                [e.target.name]: {id:tempValue._id, nombre: tempValue.nombre}
+                [e.target.name]: {id:tempValue._id, nombre: tempValue.nombre, cupo:tempValue.cupo}
             },()=> {
                 document.getElementById('recinto').childNodes[0].innerHTML = tempValue.nombre;
                 document.getElementById('recinto').childNodes[0].classList.add("disabled");;
@@ -113,18 +113,17 @@ class CreateEvento extends Component {
                         <label htmlFor="tipoEvento">Tipo de evento</label>
                         <input value={tipoEvento} onChange={this.handleChange} type="text" name="tipoEvento" required />
                     </div>
-                    <div>
-                        <label htmlFor="cantidadAsistentes">Cantidad de asistentes</label>
-                        <input value={cantidadAsistentes} onChange={this.handleChange} type="number" name="cantidadAsistentes" />
-                    </div>
-
                     <div className="slt_container">
                         <label htmlFor="sltRecinto">Recinto</label>
-                        <select className="recinto_slt" id="recinto" value={recinto.nombre} name='recinto' required onChange={this.handleChange}>
+                        <select className="recinto_slt" id="recinto" value={recinto} name='recinto'  onChange={this.handleChange}>
                             <option value="" selected>Recinto</option>
-        {this.props.lugares.map((lugar) => <option key={lugar._id} value={JSON.stringify({_id:lugar._id,nombre:lugar.nombre})}>{lugar.nombre}</option>)}
+        {this.props.lugares.map((lugar) => <option key={lugar._id} value={JSON.stringify(lugar)}>{lugar.nombre}</option>)}
 
                         </select>
+                    </div>
+                    <div>
+                        <label htmlFor="cantidadAsistentes">Cantidad de asistentes</label>
+                        <input max={this.state.recinto ? this.state.recinto.cupo : 20} value={cantidadAsistentes} onChange={this.handleChange} type="number" name="cantidadAsistentes" />
                     </div>
                     <div>
                         <label htmlFor="fecha">Fecha</label>

@@ -104,14 +104,14 @@ exports.createLugar = async (req,res,next) => {
             nombre,
             cupo,
             provincia,
-            direcion
+            direccion
         } = req.body;
         const user = await db.User.findById(id);
         const lugar = await db.Lugar.create({
             nombre,
             cupo,
             provincia,
-            direcion
+            direccion
         });
         user.lugares.push(lugar._id);
         await user.save();
