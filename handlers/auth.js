@@ -17,17 +17,18 @@ exports.register = async (req, res, next) => {
 exports.login = async (req, res, next) => {
     try {
         const user = await db.User.findOne({ email: req.body.email });
-        const {id, username, email, tipo} = user;
+        const {id, username, email, tipo, lugares} = user;
         const valid = await user.comparePassword(req.body.password);
 
         if (valid) {
-            const token = jwt.sign({ id, email, username, tipo }, process.env.SECRETE);
+            const token = jwt.sign({ id, email, username, tipo, lugares }, process.env.SECRETE);
 
             res.json({
                 id,
                 username,
                 email,
                 tipo,
+                lugares,
                 token
             });
         } else {

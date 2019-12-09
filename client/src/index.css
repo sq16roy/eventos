@@ -179,6 +179,10 @@ font-family: Roboto;
   justify-content: center;
   flex-wrap: wrap;
 }
+option.disabled {
+  color: black !important;
+  background-color: gray !important;
+}
 
 .submit_btn, .login_btn{
   width: 204px;
