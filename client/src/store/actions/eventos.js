@@ -1,5 +1,5 @@
 import api from '../../services/api';
-import {SET_EVENTO , SET_CURRENT_EVENTO} from '../actions/actionTypes';
+import {SET_EVENTO , SET_CURRENT_EVENTO, SET_lUGAR, SET_lUGARES} from '../actions/actionTypes';
 import { addError, removeError } from './error';
 
 export const setEventos = (eventos) => ({
@@ -9,6 +9,14 @@ export const setEventos = (eventos) => ({
 export const setCurrentEvento = (evento) => ({
 	type: SET_CURRENT_EVENTO,
 	evento
+});
+export const setLugar = (lugar) => ({
+    type: SET_lUGAR,
+    lugar
+});
+export const setLugares = (lugares) => ({
+    type: SET_lUGARES,
+    lugares
 });
 
 export const getEventos = () => {
@@ -46,6 +54,30 @@ export const createEvento = (data) => {
             dispatch(addError(error.err));
 		}
 	};
+};
+export const createLugar = (data) => {
+	return async (dispatch) => {
+		try {
+			const lugar = await api.call('post', 'eventos/lugar', data);
+			dispatch(setLugar(lugar));
+			dispatch(removeError());
+		} catch (err) {
+			const error = err.response.data;
+            dispatch(addError(error.err));
+		}
+	};
+};
+export const getLugares = () => {
+    return async dispatch => {
+        try {
+            const lugares = await api.call('get', 'eventos/lugar');
+            dispatch(setLugares(lugares));
+            dispatch(removeError());
+        } catch (err) {
+            const error = err.response.data;
+            dispatch(addError(error.message));
+        }
+    }
 };
 export const getCurrentEvento = (id) => {
 	return async (dispatch) => {

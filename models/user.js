@@ -44,6 +44,10 @@ const userSchema = new mongoose.Schema({
         type: Array,
         default: []
     },
+    lugares: {
+        type: Array,
+        default: []
+    },
     created: {
         type: Date,
         default: Date.now

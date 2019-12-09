@@ -13,3 +13,5 @@ mongoose.connect(
 
 module.exports.User = require('./user');
 module.exports.Evento = require('./evento');
+module.exports.Lugar = require('./lugar');
+

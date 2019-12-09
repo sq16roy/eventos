@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { createEvento } from '../store/actions';
+import { createLugar } from '../store/actions';
 
 class CreateLugar extends Component {
     constructor(props) {
         super(props);
         this.state = {
             nombre: '',
-            cupo: '',
+            cupo: "",
+            provincia: '',
+            direccion: ''
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -27,7 +29,7 @@ class CreateLugar extends Component {
         } = this.state;
 
         e.preventDefault();
-        this.props.createEvento({
+        this.props.createLugar({
             nombre,
             cupo,
             provincia,
@@ -86,4 +88,4 @@ class CreateLugar extends Component {
     }
 }
 
-export default connect(store => ({}), { createEvento })(CreateLugar);
+export default connect(store => ({}), { createLugar })(CreateLugar);

@@ -41,7 +41,7 @@ class Evento extends Component {
         });
     }
 
-    renderNormalView(_, moment, evento, userId, tipo, toggleView, state, handleChange, deleteEvento, isAuthenticated) {
+    renderNormalView(lugares, _, moment, evento, userId, tipo, toggleView, state, handleChange, deleteEvento, isAuthenticated) {
 
         return (
             <div className="evento_information_container">
@@ -63,7 +63,7 @@ class Evento extends Component {
                     </p>
 
                     <p><strong>Recinto:</strong>
-                        {evento.recinto}
+                        {evento.recinto ? evento.recinto.nombre : ''}
                     </p>
 
                     <p><strong>Descripción del evento:</strong>
@@ -73,12 +73,12 @@ class Evento extends Component {
                     {
                         (Object.keys(evento).length > 0) &&
                         <div>
-                            {_.includes([evento.user._id], userId) && <button className="cancel_btn" disabled={!state.cancelMsg} onClick={() => { deleteEvento(evento._id) }}>Cancelar</button>}
+                            {(_.includes([evento.user._id], userId) || _.includes(lugares, evento.recinto.id)) && <button className="cancel_btn" disabled={!state.cancelMsg} onClick={() => { deleteEvento(evento._id) }}>Cancelar</button>}
                             {_.includes([evento.user._id], userId) && <button className="edit_btn" onClick={() => { toggleView(moment) }}>Editar</button>}
                         </div>
                     }
                 </div>
-                {((isAuthenticated && Object.keys(evento).length > 0) && (_.includes([evento.user._id], userId)) && Object.keys(evento).length > 0) && <textarea className="textarea_cancel" onChange={handleChange} name="cancelMsg" id="" placeholder="Motivo de cancelación" value={state.cancelMsg}></textarea>}
+                {((isAuthenticated && Object.keys(evento).length > 0) && (_.includes([evento.user._id], userId)|| _.includes(lugares, evento.recinto.id)) && Object.keys(evento).length > 0) && <textarea className="textarea_cancel" onChange={handleChange} name="cancelMsg" id="" placeholder="Motivo de cancelación" value={state.cancelMsg}></textarea>}
             </div>
         );
     }
@@ -155,15 +155,15 @@ class Evento extends Component {
         const {
             showEditView
         } = this.state;
-        const { evento, tipo, deleteEvento, isAuthenticated, userId } = this.props
+        const { evento, tipo, deleteEvento, isAuthenticated, userId, lugares } = this.props
 
         return (
             <div>
                 {showEditView && this.renderEditeView()}
-                {!showEditView && this.renderNormalView(_, moment, evento, userId, tipo, this.toggleView, this.state, this.handleChange, deleteEvento, isAuthenticated)}
+                {!showEditView && this.renderNormalView(lugares, _, moment, evento, userId, tipo, this.toggleView, this.state, this.handleChange, deleteEvento, isAuthenticated)}
             </div>
         );
     }
 }
 
-export default connect(store => ({ userId: store.auth.user.id, evento: store.currentEvento, tipo: store.auth.user.tipo, isAuthenticated: store.auth.isAuthenticated }), { deleteEvento })(Evento);
+export default connect(store => ({lugares: store.auth.user.lugares, userId: store.auth.user.id, evento: store.currentEvento, tipo: store.auth.user.tipo, isAuthenticated: store.auth.isAuthenticated }), { deleteEvento })(Evento);

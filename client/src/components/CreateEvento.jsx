@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { createEvento } from '../store/actions';
+import { createEvento, getLugares } from '../store/actions';
 
 class CreateEvento extends Component {
     constructor(props) {
@@ -9,6 +9,7 @@ class CreateEvento extends Component {
             precio: '',
             nombre: '',
             hora: '',
+            recinto: {nombre:'Recinto'},
             fecha: '',
             imgUrl: 'http://res.cloudinary.com/sq16roy/image/upload/v1575850149/default-no-image-1_jgg9x3.png'
         };
@@ -19,6 +20,8 @@ class CreateEvento extends Component {
     componentDidMount() {
         localStorage.setItem('currentImage', '');
         document.getElementById("upload_widget").addEventListener("click", this.renderImage, false);
+        const { getLugares } = this.props;
+        getLugares();
     }
 
     renderImage() {
@@ -33,9 +36,20 @@ class CreateEvento extends Component {
     }
 
     handleChange(e) {
-        this.setState({
-            [e.target.name]: e.target.value
-        });
+        if (e.target.name == 'recinto') {
+            let tempValue = JSON.parse(e.target.value);
+            this.setState({
+                [e.target.name]: {id:tempValue._id, nombre: tempValue.nombre}
+            },()=> {
+                document.getElementById('recinto').childNodes[0].innerHTML = tempValue.nombre;
+                document.getElementById('recinto').childNodes[0].classList.add("disabled");;
+            });
+        } else {
+            this.setState({
+                [e.target.name]: e.target.value
+            });
+        }
+        
     }
     handleSubmit(e) {
         const {
@@ -106,9 +120,9 @@ class CreateEvento extends Component {
 
                     <div className="slt_container">
                         <label htmlFor="sltRecinto">Recinto</label>
-                        <select className="recinto_slt" id="recinto" value={recinto} name='recinto' required onChange={this.handleChange}>
-                            <option value="">Recinto</option>
-                            <option value="Estadio Nacional">Estadio Nacional</option>
+                        <select className="recinto_slt" id="recinto" value={recinto.nombre} name='recinto' required onChange={this.handleChange}>
+                            <option value="" selected>Recinto</option>
+        {this.props.lugares.map((lugar) => <option key={lugar._id} value={JSON.stringify({_id:lugar._id,nombre:lugar.nombre})}>{lugar.nombre}</option>)}
 
                         </select>
                     </div>
@@ -141,4 +155,4 @@ class CreateEvento extends Component {
     }
 }
 
-export default connect(store => ({}), { createEvento })(CreateEvento);
+export default connect(store => ({lugares:store.lugares}), { createEvento, getLugares })(CreateEvento);

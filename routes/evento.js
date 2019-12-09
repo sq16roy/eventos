@@ -6,6 +6,10 @@ router.route('/')
 .get(handle.showEventos)
 .post(auth, handle.createEvento)//show eventos
 
+router.route('/lugar')
+.get(handle.showLugares)
+.post(auth, handle.createLugar)//show eventos
+
 router.get('/user', auth, handle.usersEventos);
 
 router.route('/:id')

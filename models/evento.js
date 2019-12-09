@@ -9,7 +9,7 @@ const eventoSchema = new mongoose.Schema({
 		type: String,
 	},
 	recinto: {
-		type: String,
+		type: Object,
 		required: true
 	},
 	tipoEvento: {

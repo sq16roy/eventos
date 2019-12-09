@@ -97,3 +97,41 @@ exports.deleteEvento = async (req,res,next) => {
     }
 };
 
+exports.createLugar = async (req,res,next) => {
+    try {
+        const {id} = req.decoded;
+        const {
+            nombre,
+            cupo,
+            provincia,
+            direcion
+        } = req.body;
+        const user = await db.User.findById(id);
+        const lugar = await db.Lugar.create({
+            nombre,
+            cupo,
+            provincia,
+            direcion
+        });
+        user.lugares.push(lugar._id);
+        await user.save();
+
+        res.status(201).json({...lugar._doc, user:user._id});
+    } catch (err) {
+        err.status = 400;
+        err.message = 'Todos los campos son requeridos';
+        next(err);
+
+    }
+};
+
+exports.showLugares = async (req, res, next) => {
+    try {
+        const lugares = await db.Lugar.find().populate('user', ['username', 'id']);
+
+        res.status(200).json(lugares);
+    } catch (err) {
+        err.status = 400;
+        next(err);
+    }
+};
