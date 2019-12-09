@@ -44,13 +44,26 @@ exports.getEvento = async (req,res,next) => {
 exports.createEvento = async (req,res,next) => {
     try {
         const {id} = req.decoded;
-        const user = await db.User.findById(id);
-        const { nombre, hora, fecha, precio } = req.body;
-        const evento = await db.Evento.create({
+        const {
+            precio,
             nombre,
             hora,
             fecha,
+            tipoEvento,
+            cantidadAsistentes,
+            recinto,
+            descripcion
+        } = req.body;
+        const user = await db.User.findById(id);
+        const evento = await db.Evento.create({
             precio,
+            nombre,
+            hora,
+            fecha,
+            tipoEvento,
+            cantidadAsistentes,
+            recinto,
+            descripcion,
             user
         });
         user.eventos.push(evento._id);

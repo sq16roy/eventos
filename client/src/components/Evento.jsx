@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
+import Moment from 'react-moment';
 import { deleteEvento } from '../store/actions';
 
 class Evento extends Component {
@@ -28,32 +29,37 @@ class Evento extends Component {
         console.log('test');
     }
 
-    toggleView() {
+    toggleView(moment) {
         const { evento } = this.props;
 
         this.setState({
             precio: evento.precio,
             nombre: evento.nombre,
-            hora: new Date(evento.hora),
-            fecha: '20/10/2019',
+            hora: moment(evento.fecha).format('H:HH'),
+            fecha: moment(evento.fecha).format('D MM YYYY'),
             showEditView: this.state.showEditView ? false : true
         });
     }
 
-    renderNormalView(evento, userId, tipo, toggleView, state, handleChange, deleteEvento, isAuthenticated) {
-        var _ = require('../../node_modules/lodash');
+    renderNormalView(_, moment, evento, userId, tipo, toggleView, state, handleChange, deleteEvento, isAuthenticated) {
+       
         return (
             <div className="evento_information_container">
                 <h3 className="evento_title">{evento.nombre}</h3>
                 <div className="evento_information">
                     <p><strong>Hora:</strong> {evento.hora}</p>
-                    <p><strong>Fecha:</strong> {evento.fecha}</p>
+                    <p><strong>Fecha:</strong>
+                        {moment(evento.fecha).format('D MM YYYY')}
+                    </p>
+                    <p><strong>Tipo Evento:</strong>
+                        {evento.tipoEvento}
+                    </p>
                     <p><strong>Precio:</strong> {evento.precio}</p>
                     {
                         (Object.keys(evento).length > 0) &&
                         <div>
                             {_.includes([evento.user._id], userId) && <button className="cancel_btn" disabled={!state.cancelMsg} onClick={() => { deleteEvento(evento._id) }}>Cancelar</button>}
-                            {_.includes([evento.user._id], userId) && <button className="edit_btn" onClick={toggleView}>Editar</button>}
+                            {_.includes([evento.user._id], userId) && <button className="edit_btn" onClick={() => {toggleView(moment)}}>Editar</button>}
                         </div>
                     }
                 </div>
@@ -129,6 +135,8 @@ class Evento extends Component {
     }
 
     render() {
+        let _ = require('lodash');
+        let moment = require('moment');
         const {
             showEditView
         } = this.state;
@@ -137,7 +145,7 @@ class Evento extends Component {
         return (
             <div>
                 {showEditView && this.renderEditeView()}
-                {!showEditView && this.renderNormalView(evento, userId, tipo, this.toggleView, this.state, this.handleChange, deleteEvento, isAuthenticated)}
+                {!showEditView && this.renderNormalView(_, moment, evento, userId, tipo, this.toggleView, this.state, this.handleChange, deleteEvento, isAuthenticated)}
             </div>
         );
     }

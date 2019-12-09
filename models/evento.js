@@ -5,6 +5,17 @@ const eventoSchema = new mongoose.Schema({
 		type: String,
 		required: true
 	},
+	descripcion: {
+		type: String,
+	},
+	recinto: {
+		type: String,
+		required: true
+	},
+	tipoEvento: {
+		type: String,
+		required: true
+	},
 	hora: {
 		type: String,
 		required: true
@@ -21,6 +32,10 @@ const eventoSchema = new mongoose.Schema({
 		type: Number,
 		default: 0,
 		required: true
+	},
+	cantidadAsistentes:{
+		type: Number,
+		default: 1,
 	},
     user: {
         type: mongoose.Schema.Types.ObjectId,

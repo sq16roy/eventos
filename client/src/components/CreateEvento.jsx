@@ -30,7 +30,11 @@ class CreateEvento extends Component {
             precio,
             nombre,
             hora,
-            fecha
+            fecha,
+            tipoEvento,
+            cantidadAsistentes,
+            recinto,
+            descripcion
         } = this.state;
 
         e.preventDefault();
@@ -38,13 +42,21 @@ class CreateEvento extends Component {
             precio,
             nombre,
             hora,
-            fecha
+            fecha,
+            tipoEvento,
+            cantidadAsistentes,
+            recinto,
+            descripcion
         });
         this.setState({
             precio: '',
             nombre: '',
             hora: '',
-            fecha: ''
+            fecha: '',
+            tipoEvento: '',
+            cantidadAsistentes: '',
+            recinto: '',
+            descripcion: ''
         });
     }
 
@@ -56,7 +68,6 @@ class CreateEvento extends Component {
             fecha,
             tipoEvento,
             cantidadAsistentes,
-            pais,
             recinto,
             descripcion
         } = this.state;
@@ -75,16 +86,12 @@ class CreateEvento extends Component {
                     </div>
                     <div>
                         <label htmlFor="cantidadAsistentes">Cantidad de asistentes</label>
-                        <input value={cantidadAsistentes} onChange={this.handleChange} type="number" name="cantidadAsistentes" required />
-                    </div>
-                    <div>
-                        <label htmlFor="pais">País</label>
-                        <input value={pais} onChange={this.handleChange} type="text" name="pais" required />
+                        <input value={cantidadAsistentes} onChange={this.handleChange} type="number" name="cantidadAsistentes" />
                     </div>
 
                     <div className="slt_container">
                         <label htmlFor="sltRecinto">Recinto</label>
-                        <select className="recinto_slt" id="recinto" value={recinto} name='recinto' onChange={this.handleChange}>
+                        <select className="recinto_slt" id="recinto" value={recinto} name='recinto' required onChange={this.handleChange}>
                             <option value="">Recinto</option>
                             <option value="San Jose">Estadio Nacional</option>
 
