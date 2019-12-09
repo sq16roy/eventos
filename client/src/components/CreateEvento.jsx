@@ -14,7 +14,12 @@ class CreateEvento extends Component {
         this.handleChange = this.handleChange.bind(this);
 		this.handleSubmit = this.handleSubmit.bind(this);       
     }
-
+    componentDidMount() {
+		document.getElementById("upload_widget").addEventListener("click", function(){
+			localStorage.setItem('currentImage', '');
+			window.myWidget.open();
+		  }, false);
+	}
     handleChange(e) {
         this.setState({
             [e.target.name]: e.target.value
@@ -54,6 +59,7 @@ class CreateEvento extends Component {
         return(
             <div>
                 <form className="crete_event_form" onSubmit={this.handleSubmit}>
+                     <button id="upload_widget" className="cloudinary-button">Upload files</button>
                     <div>
                         <label htmlFor="nombre">Nombre</label>
                         <input value={nombre} onChange={this.handleChange} type="text" name="nombre" required/>

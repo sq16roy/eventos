@@ -16,8 +16,33 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    direccion: {
+        type: String,
+        required:true
+    },
+    primerApellido: {
+        type: String,
+        required: true
+    },
+    segundoApellido: {
+        type: String,
+    },
+    fechaNacimiento: {
+        type: Date,
+        required: true
+    },
+    genero: {
+        type: String,
+    },
+    provincia: {
+        type: String,
+    },
+    edad: {
+        type: Number,
+    },
     eventos: {
-        type: Array
+        type: Array,
+        default: []
     },
     created: {
         type: Date,
@@ -26,6 +51,14 @@ const userSchema = new mongoose.Schema({
     tipo: {
         type: String,
         default: 'cliente',
+    },
+    cedulaJuridica: {
+        type: Number,
+        default: 0,
+    },
+    tiposEventos: {
+        type: Array,
+        default:[]
     },
 });
 
