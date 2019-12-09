@@ -11,7 +11,8 @@ class Evento extends Component {
             hora: '',
             fecha: '',
             showEditView: false,
-            cancelMsg: ''
+            cancelMsg: '',
+            imgUrl: ''
         };
         this.handleChange = this.handleChange.bind(this);
         this.toggleView = this.toggleView.bind(this);
@@ -45,6 +46,9 @@ class Evento extends Component {
         return (
             <div className="evento_information_container">
                 <h3 className="evento_title">{evento.nombre}</h3>
+                <div className="evento_img_container">
+                    <img src={this.state.imgUrl ? this.state.imgUrl : evento.imgUrl} alt=""/>
+                </div>
                 <div className="evento_information">
                     <p><strong>Hora:</strong> {evento.hora}</p>
                     <p><strong>Fecha:</strong>

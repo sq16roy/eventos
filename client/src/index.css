@@ -103,6 +103,7 @@ color: #FFFFFF;
   line-height: 35px;
   color: #FFD43D;
   margin-left: 15px;
+  width: 100%;
 }
 
 .evento_information{
@@ -113,6 +114,7 @@ color: #FFFFFF;
   line-height: 25px;
   color: black;
   margin-left: 35px;
+  width: 50%;
 }
 
 
@@ -170,8 +172,13 @@ font-family: Roboto;
 .crete_event_form{
   background-color: #439de536;
   padding: 20px;
+  width: 50%;
 }
-
+.crete_event_form_container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
 
 .submit_btn, .login_btn{
   width: 204px;
@@ -217,6 +224,15 @@ margin-top: 20px;
 .evento_information_container{
   background-color: white;
   padding: 10px 10px 10px 10px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.evento_img_container{
+  width: 45%;
+}
+.evento_img_container img {
+  width: 100%;
 }
 
 .cancel_btn, .edit_btn{
@@ -231,11 +247,12 @@ margin-bottom: 20px;
 }
 
 .textarea_cancel{
+  width: 100%;
   margin-left: 15px;
-    margin-bottom: 10px;
-    border-radius: 15px;
-    width: 270px;
-    height: 78px;
+  margin-bottom: 10px;
+  border-radius: 15px;
+  height: 78px;
+  margin-top: 20px;
 }
 
 ::placeholder{

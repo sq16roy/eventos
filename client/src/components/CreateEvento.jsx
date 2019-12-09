@@ -9,17 +9,29 @@ class CreateEvento extends Component {
             precio: '',
             nombre: '',
             hora: '',
-            fecha: ''
+            fecha: '',
+            imgUrl: 'http://res.cloudinary.com/sq16roy/image/upload/v1575850149/default-no-image-1_jgg9x3.png'
         };
         this.handleChange = this.handleChange.bind(this);
+        this.renderImage = this.renderImage.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
     componentDidMount() {
-        document.getElementById("upload_widget").addEventListener("click", function () {
-            localStorage.setItem('currentImage', '');
-            window.myWidget.open();
-        }, false);
+        localStorage.setItem('currentImage', '');
+        document.getElementById("upload_widget").addEventListener("click", this.renderImage, false);
     }
+
+    renderImage() {
+        localStorage.setItem('currentImage', '');
+        window.myWidget.open();
+        setInterval(() => {
+            if (localStorage.getItem('currentImage')) {
+                this.setState({ imgUrl: localStorage.getItem('currentImage') });
+                clearInterval();
+            }
+        }, 2000);
+    }
+
     handleChange(e) {
         this.setState({
             [e.target.name]: e.target.value
@@ -34,7 +46,8 @@ class CreateEvento extends Component {
             tipoEvento,
             cantidadAsistentes,
             recinto,
-            descripcion
+            descripcion,
+            imgUrl
         } = this.state;
 
         e.preventDefault();
@@ -46,7 +59,8 @@ class CreateEvento extends Component {
             tipoEvento,
             cantidadAsistentes,
             recinto,
-            descripcion
+            descripcion,
+            imgUrl
         });
         this.setState({
             precio: '',
@@ -56,7 +70,8 @@ class CreateEvento extends Component {
             tipoEvento: '',
             cantidadAsistentes: '',
             recinto: '',
-            descripcion: ''
+            descripcion: '',
+            imgUrl: 'http://res.cloudinary.com/sq16roy/image/upload/v1575850149/default-no-image-1_jgg9x3.png'
         });
     }
 
@@ -73,9 +88,9 @@ class CreateEvento extends Component {
         } = this.state;
 
         return (
-            <div>
+            <div className="crete_event_form_container">
                 <form className="crete_event_form" onSubmit={this.handleSubmit}>
-                    <button id="upload_widget" className="cloudinary-button">Upload files</button>
+                    <button id="upload_widget" className="">Subir Imagen</button>
                     <div>
                         <label htmlFor="nombre">Nombre</label>
                         <input value={nombre} onChange={this.handleChange} type="text" name="nombre" required />
@@ -118,6 +133,9 @@ class CreateEvento extends Component {
                     </div>
                     <button className="submit_btn" type="submit">Crear</button>
                 </form>
+                <div className="evento_img_container">
+                    <img src={this.state.imgUrl} alt="" />
+                </div>
             </div>
         );
     }
