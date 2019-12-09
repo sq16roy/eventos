@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react';
 import { connect } from 'react-redux';
-import Moment from 'react-moment';
 import { deleteEvento } from '../store/actions';
 
 class Evento extends Component {
@@ -42,7 +41,7 @@ class Evento extends Component {
     }
 
     renderNormalView(_, moment, evento, userId, tipo, toggleView, state, handleChange, deleteEvento, isAuthenticated) {
-       
+
         return (
             <div className="evento_information_container">
                 <h3 className="evento_title">{evento.nombre}</h3>
@@ -51,15 +50,27 @@ class Evento extends Component {
                     <p><strong>Fecha:</strong>
                         {moment(evento.fecha).format('D MM YYYY')}
                     </p>
-                    <p><strong>Tipo Evento:</strong>
+                    <p><strong>Tipo de evento:</strong>
                         {evento.tipoEvento}
+                    </p>
+
+                    <p><strong>Cantidad de asistentes:</strong>
+                        {evento.cantidadAsistentes}
+                    </p>
+
+                    <p><strong>Recinto:</strong>
+                        {evento.recinto}
+                    </p>
+
+                    <p><strong>Descripción del evento:</strong>
+                        {evento.descripcion}
                     </p>
                     <p><strong>Precio:</strong> {evento.precio}</p>
                     {
                         (Object.keys(evento).length > 0) &&
                         <div>
                             {_.includes([evento.user._id], userId) && <button className="cancel_btn" disabled={!state.cancelMsg} onClick={() => { deleteEvento(evento._id) }}>Cancelar</button>}
-                            {_.includes([evento.user._id], userId) && <button className="edit_btn" onClick={() => {toggleView(moment)}}>Editar</button>}
+                            {_.includes([evento.user._id], userId) && <button className="edit_btn" onClick={() => { toggleView(moment) }}>Editar</button>}
                         </div>
                     }
                 </div>
