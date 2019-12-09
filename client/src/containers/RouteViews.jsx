@@ -6,6 +6,7 @@ import HomePage from '../pages/HomePage';
 import {getCurrentEvento} from '../store/actions';
 import EventPage from '../pages/EventPage';
 import CreateEventoPage from '../pages/CreateEventoPage';
+import CreateLugarPage from '../pages/CreateLugarPage';
 
 const RouterViews = ({ auth, getCurrentEvento }) => (
 	<main>
@@ -23,6 +24,8 @@ const RouterViews = ({ auth, getCurrentEvento }) => (
 			/>
 			<Route exact path='/evento/:id' render={(props) => <EventPage getEvento={id => getCurrentEvento(id)} {...props}/>} />
 			<Route exact path='/eventos/nuevo' render={() => <CreateEventoPage isAuthenticated={auth.isAuthenticated} />} />
+			<Route exact path='/eventos/lugar' render={() => <CreateLugarPage isAuthenticated={auth.isAuthenticated} />} />
+
 		</Switch>
 	</main>
 );
