@@ -151,19 +151,15 @@ font-family: Roboto;
 }
 
 .main_title{
-  display: block;
-margin-bottom: 20px;
-font-family: Roboto;
+  display: flex;
+  font-family: Roboto;
   font-style: normal;
   font-weight: bold;
   font-size: 30px;
   line-height: 35px;
   color: #FFD43D;
-  margin-left: 15px;
-  margin-top: 10px;
-  margin-left: 684px;
-    margin-bottom: 40px;
-    margin-top: 150px;
+  margin: 150px auto 40px auto;
+  justify-content: center;
 }
 
 

@@ -35,7 +35,7 @@ const NavBar = ({ auth, logout, removeError }) => (
 );
 
 const validarUser = (tipo) => {
-	return (tipo === 'cliente' || tipo === 'admin');
+	return (tipo === 'cliente' || tipo === 'admin' || tipo === 'provedor');
 };
 
 export default connect(store => ({ auth: store.auth }), { logout, removeError })(NavBar);

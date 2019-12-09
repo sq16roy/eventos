@@ -5,7 +5,7 @@ exports.register = async (req, res, next) => {
     try {
         const user = await db.User.create(req.body);
         const { id, username, email, tipo } = user;
-        const token = jwt.sign({ id, username, email }, process.env.SECRETE);
+        const token = jwt.sign({ id, username, email, tipo }, process.env.SECRETE);
         res.status(201).json({id, username, email, token, tipo});
     } catch (err) {
         if (err.code === 11000) {

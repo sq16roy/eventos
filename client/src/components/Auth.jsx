@@ -15,18 +15,22 @@ class Auth extends Component {
 		this.renderLogin = this.renderLogin.bind(this);
 		this.handleChange = this.handleChange.bind(this);
 	}
-
+	
 	handleChange(e) {
 		this.setState({
 			[e.target.name]: e.target.value
 		});
 	}
 	handleSubmit(e) {
-		const { email, password, username, tipo } = this.state;
+		const { genero, email, password, username, tipo, segundoNombre, nombreEmpresa, nombreComercial, cedulaJuridica,
+			fechaInicio, annoExperiencia, primerApellido, segundoApellido, fechaNacimiento, edad, provincia,
+			direccion, eventoFavorito } = this.state;
 		const { authType } = this.props;
 
 		e.preventDefault();
-		this.props.authUser(authType || 'login', { email, password, username, tipo });
+		this.props.authUser(authType || 'login', { genero, email, password, username, tipo, segundoNombre, nombreEmpresa, nombreComercial, cedulaJuridica,
+			fechaInicio, annoExperiencia, primerApellido, segundoApellido, fechaNacimiento, edad, provincia,
+			direccion, eventoFavorito });
 	}
 	renderLogin() {
 		const { email, password } = this.state;
@@ -53,6 +57,7 @@ class Auth extends Component {
 
 		return (
 			<Fragment>
+				
 				<div>
 					<label htmlFor="tipo"></label>
 					<select className="tipo_slt" name="tipo" id="" onChange={this.handleChange} value={tipo}>
@@ -62,12 +67,12 @@ class Auth extends Component {
 				{this.state.tipo !== "cliente" && <Fragment>
 					<div className="inputBox">
 						<label htmlFor="txtNombreEmpresa">Nombre de la empresa<span className="required"> *</span></label>
-						<input className="requiredInput" type="text" id="txtNombreEmpresa" required value={nombreEmpresa} name='nombreEmpresa' onChange={this.handleChange} />
+						<input className="requiredInput" type="text" id="txtNombreEmpresa" required value={username} name='username' onChange={this.handleChange} />
 					</div>
 
 					<div className="inputBox">
 						<label htmlFor="txtNombreComercial">Nombre comercial<span className="required"> *</span></label>
-						<input className="requiredInput" type="text" id="txtNombreComercial" required value={nombreComercial} name='nombreComercial' onChange={this.handleChange} />
+						<input className="requiredInput" type="text" id="txtNombreComercial" required value={primerApellido} name='primerApellido' onChange={this.handleChange} />
 					</div>
 
 					<div className="inputBox">
@@ -77,7 +82,7 @@ class Auth extends Component {
 
 					<div className="inputBox">
 						<label htmlFor="dtInicio">Fecha de inicio de la empresa<span className="required"> *</span></label>
-						<input className="requiredInput" type="date" id="dtExperiencia" required value={fechaInicio} name='fechaInicio' onChange={this.handleChange} />
+						<input className="requiredInput" type="date" id="dtExperiencia" required value={fechaNacimiento} name='fechaNacimiento' onChange={this.handleChange} />
 						<label htmlFor="numEdad">Años de experiencia:</label>
 						<input type="number" name="Edad" id="edadCalculada" readOnly value={annoExperiencia} name='annoExperiencia' onChange={this.handleChange} />
 					</div>
@@ -95,7 +100,7 @@ class Auth extends Component {
 						<label htmlFor="txtApellido1">Primer Apellido<span className="required"> *</span></label>
 						<input className="requiredInput" type="text" id="txtApellido1" required value={primerApellido} name='primerApellido' onChange={this.handleChange} />
 						<label htmlFor="txtApellido2">Segundo Apellido</label>
-						<input className="noRequiredInput" type="text" id="txtApellido2" required value={segundoApellido} name='segundoApellido' onChange={this.handleChange} />
+						<input className="noRequiredInput" type="text" id="txtApellido2"  value={segundoApellido} name='segundoApellido' onChange={this.handleChange} />
 					</div>
 
 					<div className="inputBox">
@@ -132,7 +137,7 @@ class Auth extends Component {
 
 				<div className="inputBox">
 					<label htmlFor="sltDireccion">Dirección<span className="required"> *</span></label>
-					<select className="tipo_slt" id="provincia" value={provincia} name='provincia' onChange={this.handleChange}>
+					<select className="tipo_slt" id="provincia" value={provincia} name='provincia' required onChange={this.handleChange}>
 						<option value="">Provincia</option>
 						<option value="San Jose">San José</option>
 						<option value="Alajuela">Alajuela</option>
