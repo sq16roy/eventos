@@ -37,6 +37,10 @@ const eventoSchema = new mongoose.Schema({
 		type: Number,
 		default: 1,
 	},
+	imgUrl:{
+		type: String,
+		default:'http://res.cloudinary.com/sq16roy/image/upload/v1575850149/default-no-image-1_jgg9x3.png'
+	},
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'

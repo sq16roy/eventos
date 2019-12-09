@@ -52,7 +52,8 @@ exports.createEvento = async (req,res,next) => {
             tipoEvento,
             cantidadAsistentes,
             recinto,
-            descripcion
+            descripcion,
+            imgUrl
         } = req.body;
         const user = await db.User.findById(id);
         const evento = await db.Evento.create({
@@ -64,6 +65,7 @@ exports.createEvento = async (req,res,next) => {
             cantidadAsistentes,
             recinto,
             descripcion,
+            imgUrl,
             user
         });
         user.eventos.push(evento._id);
