@@ -346,3 +346,21 @@ button:disabled {
 button{
   cursor: pointer;
 }
+.App-payment {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: 30px;
+  color: white;
+}
+.App-payment .rccs__card{
+  margin: 0;
+}
+.App-payment .rccs{
+  flex: 0 0 100%;
+}
+.flex-100 {
+  flex: 0 0 100%;
+}
+.pagar-eventos a{
+  text-decoration: none;
+}
