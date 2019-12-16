@@ -106,6 +106,17 @@ color: #FFFFFF;
   width: 100%;
 }
 
+.flex-1002{
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 30px;
+  line-height: 35px;
+  color: #FFD43D;
+  margin-left: 15px;
+  width: 100%;
+}
+
 .evento_information{
   font-family: Roboto;
   font-style: normal;
@@ -139,6 +150,18 @@ color: #FFFFFF;
   font-size: 12px;
 }
 
+.flex-100 input{
+  border: 1px solid #FFFFFF;
+  border-radius: 10px;
+  height: 30px;
+  width: 30%;
+  margin-top: 20px;
+}
+
+.inputPlace ::placeholder{
+  color: #FFFFFF !important;
+  font-size: 12px;
+}
 .crete_event_form label, .login_form label{
   display: block;
 margin-bottom: 20px;
@@ -150,6 +173,30 @@ font-family: Roboto;
   color: #FFFFFF;
   margin-left: 15px;
   margin-top: 10px;
+}
+
+.liFull{
+  margin-bottom: 20px;
+font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 35px;
+  color: #FFFFFF;
+  margin-left: 15px;
+  margin-top: 10px;
+}
+
+.liFull2{
+  margin-bottom: 20px;
+font-family: Roboto;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 35px;
+  color: #FFFFFF;
+  margin-left: 15px;
+  margin-top: 27px;
 }
 
 .main_title{
@@ -184,7 +231,7 @@ option.disabled {
   background-color: gray !important;
 }
 
-.submit_btn, .login_btn{
+.submit_btn, .login_btn, .pagarBtn, .uploadImageBtn{
   width: 204px;
 height: 54px;
 background: #FFD43D;
@@ -267,7 +314,7 @@ margin-bottom: 20px;
 
 .ver_btn{
   cursor: pointer;
-  color: #FFD43D;
+  color: #ff5722;
   font-size: 20px;
 }
 
