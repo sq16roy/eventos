@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import {Redirect} from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getEventos } from '../store/actions';
@@ -115,6 +116,9 @@ class ComprarPage extends Component {
     }
 
     render() {
+        const { isAuthenticated, userType } = this.props;
+
+		if (!isAuthenticated || userType!=='cliente') return <Redirect to="/login" />;
         const eventos = this.props.eventos.map((evento) => (
             <tr key={evento._id}>
                 <td>{evento.nombre}</td>

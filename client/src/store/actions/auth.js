@@ -6,6 +6,7 @@ export const setCurrentUser = user => ({
     type: SET_CURRENT_USER,
     user
 });
+
 export const setToken = (token) => {
 	api.setToken(token);
 };
@@ -32,4 +33,15 @@ export const authUser = (path, data) => {
     }
 };
 
+export const updateUsuario = (data) => {
+	return async (dispatch) => {
+		try {
+			const usuarios = await api.call('post', 'usuarios', data);
+			dispatch(removeError());
+		} catch (err) {
+			const error = err.response.data;
+            dispatch(addError(error.err));
+		}
+	};
+};
 

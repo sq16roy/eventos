@@ -135,3 +135,22 @@ exports.showLugares = async (req, res, next) => {
         next(err);
     }
 };
+exports.updateEventos = async (req,res,next) => {
+    try {
+        const {id} = req.decoded;
+        const {
+            rating,
+        } = req.body;
+        const evento = await db.Evento.findById(req.body.id).populate('user', ['username', 'id']);
+        evento.rating = evento.rating + rating;
+        evento.votantes.push(id);
+        evento.votantes = [...new Set(evento.votantes.map(a => a))];
+        await evento.save();
+
+        res.status(201).json(evento);
+    } catch (err) {
+        err.status = 400;
+        next(err);
+
+    }
+};

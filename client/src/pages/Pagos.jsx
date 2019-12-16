@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Redirect} from 'react-router-dom';
 import {
 	formatCreditCardNumber,
 	formatCVC,
@@ -62,6 +63,10 @@ import 'react-credit-cards/es/styles-compiled.css';
 	
 	  render() {
 		const { name, number, expiry, cvc, focused, issuer, formData } = this.state;
+		const { isAuthenticated, userType } = this.props;
+
+		if (!isAuthenticated || userType!=='cliente') return <Redirect to="/login" />;
+		
 		let total = 0;
 		JSON.parse(sessionStorage.getItem('carrito')).forEach((e) => {
 			total = total + (e.precio * e.cantidad);

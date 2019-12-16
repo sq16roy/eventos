@@ -41,6 +41,14 @@ const eventoSchema = new mongoose.Schema({
 		type: String,
 		default:'http://res.cloudinary.com/sq16roy/image/upload/v1575850149/default-no-image-1_jgg9x3.png'
 	},
+	rating:{
+		type: Number,
+		default: 0
+	},
+	votantes:{
+		type:Array,
+		default: []
+	},
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'

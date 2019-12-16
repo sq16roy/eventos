@@ -3,8 +3,8 @@ import {Redirect} from 'react-router-dom';
 import ErrorMessage from '../components/ErrorMessage';
 import CreateLugar from '../components/CreateLugar';
 
-const CreateLugarPage = ({isAuthenticated}) => {
-    if (!isAuthenticated) return <Redirect to="/login" />;
+const CreateLugarPage = ({isAuthenticated, userType}) => {
+    if (!isAuthenticated || userType!=='provedor') return <Redirect to="/login" />;
 
     return(
         <div>

@@ -14,7 +14,7 @@ router.get('/user', auth, handle.usersEventos);
 
 router.route('/:id')
 .get(handle.getEvento)
-.post()
+.post(auth, handle.updateEventos)
 .delete(auth, handle.deleteEvento);
 
 module.exports = router;

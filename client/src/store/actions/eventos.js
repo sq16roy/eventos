@@ -31,6 +31,18 @@ export const getEventos = () => {
         }
     }
 };
+export const updateEventos = (id, data) => {
+    return async dispatch => {
+        try {
+            const evento = await api.call('post', `eventos/${id}`, data);
+            dispatch(setCurrentEvento(evento));
+            dispatch(removeError());
+        } catch (err) {
+            const error = err.response.data;
+            dispatch(addError(error.message));
+        }
+    }
+};
 export const getUserEventos = () => {
 	return async (dispatch) => {
 		try {

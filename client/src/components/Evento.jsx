@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react';
+import StarRatings from 'react-star-ratings';
 import { connect } from 'react-redux';
-import { deleteEvento } from '../store/actions';
+import { deleteEvento, updateEventos } from '../store/actions';
 
 class Evento extends Component {
     constructor(props) {
@@ -12,13 +13,24 @@ class Evento extends Component {
             fecha: '',
             showEditView: false,
             cancelMsg: '',
-            imgUrl: ''
+            imgUrl: '',
+            rating: 0
         };
         this.handleChange = this.handleChange.bind(this);
         this.toggleView = this.toggleView.bind(this);
         this.renderEditeView = this.renderEditeView.bind(this);
+        this.changeRating = this.changeRating.bind(this);
     }
-
+    changeRating( newRating, name ) {
+        const { updateEventos } = this.props
+        updateEventos(this.props.evento._id,{
+            rating: newRating,
+            id: this.props.evento._id
+        });
+        this.setState({
+            rating: newRating,
+        })
+    }
     handleChange(e) {
         this.setState({
             [e.target.name]: e.target.value
@@ -79,6 +91,15 @@ class Evento extends Component {
                     }
                 </div>
                 {((isAuthenticated && Object.keys(evento).length > 0) && (_.includes([evento.user._id], userId)|| _.includes(lugares, evento.recinto.id)) && Object.keys(evento).length > 0) && <textarea className="textarea_cancel" onChange={handleChange} name="cancelMsg" id="" placeholder="Motivo de cancelación" value={state.cancelMsg}></textarea>}
+                {(isAuthenticated && Object.keys(evento).length > 0) ? 
+                !_.includes(evento.votantes, userId) && <StarRatings
+                    rating={this.state.rating}
+                    starRatedColor="blue"
+                    changeRating={this.changeRating}
+                    numberOfStars={6}
+                    name='rating'
+                /> : ''}
+                <p>{`Votos Totales: ${evento.rating}`}</p>
             </div>
         );
     }
@@ -155,7 +176,7 @@ class Evento extends Component {
         const {
             showEditView
         } = this.state;
-        const { evento, tipo, deleteEvento, isAuthenticated, userId, lugares } = this.props
+        const { evento, tipo, deleteEvento, isAuthenticated, userId, lugares, updateEventos } = this.props
 
         return (
             <div>
@@ -166,4 +187,4 @@ class Evento extends Component {
     }
 }
 
-export default connect(store => ({lugares: store.auth.user.lugares, userId: store.auth.user.id, evento: store.currentEvento, tipo: store.auth.user.tipo, isAuthenticated: store.auth.isAuthenticated }), { deleteEvento })(Evento);
+export default connect(store => ({lugares: store.auth.user.lugares, userId: store.auth.user.id, evento: store.currentEvento, tipo: store.auth.user.tipo, isAuthenticated: store.auth.isAuthenticated }), { deleteEvento, updateEventos })(Evento);

@@ -15,6 +15,10 @@ const NavBar = ({ auth, logout, removeError }) => (
 				<li>
 					<Link to='/eventos/comprar'>Comprar</Link>
 				</li>)}
+			{(auth.isAuthenticated && auth.user.tipo == 'admin') && (
+			<li>
+				<Link to='/usuarios'>Usuarios</Link>
+			</li>)}
 			{(auth.isAuthenticated && !validarUser(auth.user.tipo)) && (
 				<li>
 					<Link to='/eventos/nuevo'>Crear evento</Link>

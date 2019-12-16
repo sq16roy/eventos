@@ -16,12 +16,13 @@ exports.register = async (req, res, next) => {
 }
 exports.login = async (req, res, next) => {
     try {
+        const usuarios = await db.User.find();
         const user = await db.User.findOne({ email: req.body.email });
         const {id, username, email, tipo, lugares} = user;
         const valid = await user.comparePassword(req.body.password);
 
         if (valid) {
-            const token = jwt.sign({ id, email, username, tipo, lugares }, process.env.SECRETE);
+            const token = jwt.sign({ id, email, username, tipo, lugares, usuarios: tipo == 'admin' ? usuarios : [], }, process.env.SECRETE);
 
             res.json({
                 id,
@@ -29,7 +30,8 @@ exports.login = async (req, res, next) => {
                 email,
                 tipo,
                 lugares,
-                token
+                token,
+                usuarios: tipo == 'admin' ? usuarios : [],
             });
         } else {
             throw new Error();
@@ -37,5 +39,26 @@ exports.login = async (req, res, next) => {
     } catch (err) {
         err.message = 'correo/contraseña invalida';
         next(err);
+    }
+};
+
+exports.updateUsuario = async (req,res,next) => {
+    try {
+        const {
+            status,
+            id
+        } = req.body;
+        const user = await db.User.findById(id);
+        user.status = status;
+        await user.save();
+
+        const usuarios = await db.User.find();
+
+        res.status(201).json({ usuarios:usuarios });
+    } catch (err) {
+        err.status = 400;
+        err.message = 'Todos los campos son requeridos';
+        next(err);
+
     }
 };
